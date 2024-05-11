@@ -1,0 +1,40 @@
+Garbage Collection
+-serial GC
+-parallel GC
+-G1 GC
+-Z GC
+
+serial GC
+-works with a single thread
+-freezes all application threads when it runs.
+-java -XX:+UseSerialGC -jar Application.java
+
+
+parallel GC (Java 5 until Java 8)
+-works with multiple threads
+-it also freezes all application threads when it run
+-no of threads, pause time, throughput(time spent doing GC vs time spent outside GC), max heap footprint are configurable
+-no of threads: -XX:ParallelGCThreads=<N>
+-pause time: -XX:MaxGCPauseMillis=<N>
+-throughput: -XX:GCTimeRatio=<N>
+-maximum heap footprint: -Xmx<N>
+-java -XX:+UseParallelGC -jar Application.java
+
+G1 GC (from java 7 udpate 4)
+-garbage first, for application running on multiple processor with large memory space
+-partition the heap virtually in equal size regions
+-phase1 marks the object for GC
+-phase2 sweeps the area which yield max free space
+-java -XX:+UseG1GC -jar Application.java
+
+Z GC (java 11)
+-do all work without stopping the execution of application threads for more than 10 ms
+-It uses load barriers with colored pointers
+-heap region size could be different, and size does not effect the pause time of threads
+-for java version under 15: java -XX:+UnlockExperimentalVMOptions -XX:+UseZGC Application.java
+-for java version from 15: java -XX:+UseZGC Application.java
+
+
+References
+https://baeldung.com/jvm-garbage-collectors
+https://newrelic.com/blog/best-practices/java-garbage-collection

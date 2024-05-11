@@ -1,0 +1,33 @@
+payment system
+-------
+Data estimation: 100 rps,
+1kb per record
+100*60*60*24*1KB=>8640000KB=>8640MB=>8.64GB per day=>259.2GB per month=>3.110TB per year
+-------
+filters on date city amount
+payment: {id, user_id, amount, status, date, city, transaction_id, type}
+status: PENDING, COMPLETED
+type: DEBIT, CREDIT
+transaction_id: payment gateway transaction id
+
+for consistent search we can query the sql database
+indexes on: date, amount
+
+if we can tolerate some latency (eventual consistency) we can use elasticsearch
+
+
+APIs
+Type: GET
+/api/v1/payment-search?date-from="2024-03-10"&date_to=2024-03-12&amount=1000&city=delhi&pageNo=0&size=10
+
+Response:
+{
+    data:[
+        {
+        }
+    ],
+    page:{
+        size,
+        pageNo
+    }
+}

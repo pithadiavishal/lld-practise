@@ -1,0 +1,42 @@
+Movie Ticket Booking
+
+1M request per day for booking
+
+Requirement
+search, booking, booking history
+
+Extended requirement
+notification, invoice generation, payment system
+
+Non requirement
+scale, available, consistent
+
+
+====================================
+Movie
+    id
+    title
+    release date
+    cast
+    review
+    tags ["abc","abc"]
+
+booking
+    book->movie_id, user_id, noOfTickets
+
+
+
+
+booking_info
+audi_id, screen_id, movie_instance_id, seat_no
+
+
+order-service-A {1,1,1,123}
+order-service-B {1,1,1,123}
+
+order-service-A lock booking_info
+1, 1, 1, 123
+
+
+order-service-B lock booking_info
+1, 1, 1, 123
