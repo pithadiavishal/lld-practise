@@ -1,6 +1,5 @@
 package lld.distributedcache;
 
-import sun.misc.Cache;
 
 public interface LoadBalancer {
     void addServer(CacheNode cacheNode);

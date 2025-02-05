@@ -1,34 +1,26 @@
 package lld.ratelimiter;
 
 public class LeakyBucket implements RateLimiter{
-    private int capacity;
-    private int content;
-    private long lastRequestTimeStamp;
-    private int leakRate;
 
-    public LeakyBucket(int capacity, int content, long lastRequestTimeStamp, int leakRate){
+    private long lastRequestTime;
+    private final long capacity;
+    private final long ratePerSecond;
+
+    public LeakyBucket(long capacity, long ratePerSecond) {
         this.capacity = capacity;
-        this.content = content;
-        this.lastRequestTimeStamp = lastRequestTimeStamp;
-        this.leakRate = leakRate;
+        this.ratePerSecond = ratePerSecond;
+        this.lastRequestTime = System.currentTimeMillis();
     }
-
     @Override
-    public synchronized boolean access(){
-        leak();
-        if(content+1<capacity){
-            content+=1;
-            return true;
-        }
-        return false;
-    }
-
-    private void leak() {
+    public synchronized boolean grantAccess() {
         long now = System.currentTimeMillis();
-        int leak = (int) ((now-lastRequestTimeStamp)*(leakRate/1000));
-        if(leak>0){
-            content=Math.max(0, content-leak);
-            lastRequestTimeStamp=now;
+        long elapsedTime = now - lastRequestTime;
+        long availableCapacity = Math.max(0, capacity - elapsedTime * ratePerSecond / 1000);
+        if (availableCapacity > 0) {
+            lastRequestTime = now;
+            return true;
+        } else {
+            return false;
         }
     }
 }

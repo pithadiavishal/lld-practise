@@ -1,0 +1,19 @@
+Problem Statement:
+
+Design BookMyShow using Object-Oriented principles.
+
+
+System should be able to list the cities where affiliate cinemas are located.
+
+Each theater company can have multiple movie halls and each movie hall can run multiple movie shows.
+
+Once the customer selects a movie, the service should display the cinemas running that movie and its available shows.
+
+The customer should be able to select a show at a particular theater and book their tickets.
+
+The service should show the customer the different seat options available, like regular seats, premium seats, ADA compliant accessible seats, recliner seats etc.
+
+Customers should be able to pay with credit cards or cash.
+
+The system should ensure that no two customers can reserve the same seat.
+
