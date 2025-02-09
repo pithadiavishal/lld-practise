@@ -14,7 +14,7 @@ public class TokenBucket implements RateLimiter{
     }
 
     @Override
-    public synchronized boolean access(){
+    public synchronized boolean grantAccess(){
         refill();
         if(available>1){
             available--;
