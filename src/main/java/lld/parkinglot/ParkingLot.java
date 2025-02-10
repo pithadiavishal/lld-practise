@@ -3,6 +3,7 @@ package lld.parkinglot;
 public class ParkingLot {
     private Level[] levels;
     private int NUM_LEVELS;
+    private static ParkingLot INSTANCE = new ParkingLot(5, 5, 5);
 
     // @param n number of leves
     // @param num_rows  each level has num_rows rows of spots
