@@ -1,6 +1,6 @@
 package lld.designpatterns.ChainOfResposibility.atm;
 
-public interface DispenseChain {
+public interface    DispenseChain {
 
     void dispense(Currency currency);
 

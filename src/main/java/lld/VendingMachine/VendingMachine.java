@@ -19,11 +19,13 @@ public class VendingMachine {
         Set<String> set = new HashSet<>();
         // unique id of item
         set.add("1");
-        set.add("1");
-        set.add("1");
         productCodeItemMap = new HashMap<>();
         productCodeItemMap.put("101", set);
+        set = new HashSet<>();
+        set.add("1");
         productCodeItemMap.put("102", set);
+        set = new HashSet<>();
+        set.add("1");
         productCodeItemMap.put("103", set);
     }
 
